@@ -2,19 +2,19 @@
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
 
-// var saveButton = document.querySelector(".saveBtn");
+
 var timeDisplayEl = $('#time-display');
 var textArea1 = document.querySelector("#nine-am-text");
 var textArea2 = document.querySelector("#ten-am-text");
 var saveButton = document.querySelector("#nine-am-button");
 var saveButton2 = document.querySelector("#ten-am-button");
-// var numberOfHours = document.querySelector("#mainContainer").childElementCount;
+var pastBlock = $(".past");
 
-// console.log(numberOfHours);
+//Event listeners for 
 
 saveButton.addEventListener("click", function() {
   var userInput = textArea1.value;
-  localStorage.setItem("text", userInput);
+  localStorage.setItem("text", JSON.stringify(userInput));
   // console.log("BUTTON 1");
   // console.log("This is the user input: " + userInput);
 
@@ -22,13 +22,18 @@ saveButton.addEventListener("click", function() {
 
 saveButton2.addEventListener("click", function() {
   var userInput = textArea2.value;
-  localStorage.setItem("text2", userInput);
+  localStorage.setItem("text2", JSON.stringify(userInput));
 
 });
 
 
 
-$(function () {
+$(document).ready(function() {
+
+  var rightNow = dayjs().format('MMM DD, YYYY [at] hh:mm:ss a');
+  var currentHour = dayjs().format("HH");
+  console.log(rightNow);
+  //console.log(currentHour);
   // TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in
   // local storage. HINT: What does `this` reference in the click listener
@@ -47,11 +52,14 @@ $(function () {
   // attribute of each time-block be used to do this?
   //
   // TODO: Add code to display the current date in the header of the page.
-  displayTime();
+ 
+  timeDisplayEl.text(rightNow);
 });
 
-function displayTime() {
-  var rightNow = dayjs().format('MMM DD, YYYY [at] hh:mm:ss a');
-  timeDisplayEl.text(rightNow);
-}
+// function displayTime() {
+//   var rightNow = dayjs().format('MMM DD, YYYY [at] hh:mm:ss a');
+//   timeDisplayEl.text(rightNow);
+// }
+
+
 
