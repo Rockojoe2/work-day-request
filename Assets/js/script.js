@@ -3,6 +3,7 @@
 // in the html.
 
 // var saveButton = document.querySelector(".saveBtn");
+var timeDisplayEl = $('#time-display');
 var textArea1 = document.querySelector("#nine-am-text");
 var textArea2 = document.querySelector("#ten-am-text");
 var saveButton = document.querySelector("#nine-am-button");
@@ -46,4 +47,11 @@ $(function () {
   // attribute of each time-block be used to do this?
   //
   // TODO: Add code to display the current date in the header of the page.
+  displayTime();
 });
+
+function displayTime() {
+  var rightNow = dayjs().format('MMM DD, YYYY [at] hh:mm:ss a');
+  timeDisplayEl.text(rightNow);
+}
+
