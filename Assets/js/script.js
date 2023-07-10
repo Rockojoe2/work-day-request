@@ -1,6 +1,32 @@
 // Wrap all code that interacts with the DOM in a call to jQuery to ensure that
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
+
+// var saveButton = document.querySelector(".saveBtn");
+var textArea1 = document.querySelector("#nine-am-text");
+var textArea2 = document.querySelector("#ten-am-text");
+var saveButton = document.querySelector("#nine-am-button");
+var saveButton2 = document.querySelector("#ten-am-button");
+// var numberOfHours = document.querySelector("#mainContainer").childElementCount;
+
+// console.log(numberOfHours);
+
+saveButton.addEventListener("click", function() {
+  var userInput = textArea1.value;
+  localStorage.setItem("text", userInput);
+  // console.log("BUTTON 1");
+  // console.log("This is the user input: " + userInput);
+
+});
+
+saveButton2.addEventListener("click", function() {
+  var userInput = textArea2.value;
+  localStorage.setItem("text2", userInput);
+
+});
+
+
+
 $(function () {
   // TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in
