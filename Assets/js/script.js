@@ -4,36 +4,17 @@
 
 
 var timeDisplayEl = $('#time-display');
-var textArea1 = document.querySelector("#nine-am-text");
-var textArea2 = document.querySelector("#ten-am-text");
-var saveButton = document.querySelector("#nine-am-button");
-var saveButton2 = document.querySelector("#ten-am-button");
-var pastBlock = $(".past");
-
-//Event listeners for 
-
-saveButton.addEventListener("click", function() {
-  var userInput = textArea1.value;
-  localStorage.setItem("text", JSON.stringify(userInput));
-  // console.log("BUTTON 1");
-  // console.log("This is the user input: " + userInput);
-
-});
-
-saveButton2.addEventListener("click", function() {
-  var userInput = textArea2.value;
-  localStorage.setItem("text2", JSON.stringify(userInput));
-
-});
-
-
 
 $(document).ready(function() {
 
   var rightNow = dayjs().format('MMM DD, YYYY [at] hh:mm:ss a');
   var currentHour = dayjs().format("HH");
-  console.log(rightNow);
+  var saveButton = $(".saveBtn");
+
+  //console.log(rightNow);
   //console.log(currentHour);
+
+
   // TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in
   // local storage. HINT: What does `this` reference in the click listener
@@ -41,6 +22,16 @@ $(document).ready(function() {
   // time-block containing the button that was clicked? How might the id be
   // useful when saving the description in local storage?
   //
+  $(saveButton).on("click", function(){
+    var hourOfDay = $(this).parent().attr("id").split("-")[1]; //Splits the (id of the parent, which this id is (hour-number) and retrieves the number because of the 1)
+
+    // console.log(hourOfDay);
+
+    var userInput = $(this).parent().find(".description").val(); //Returns the user input in the description as the value
+    
+    localStorage.setItem(hourOfDay,JSON.stringify(value)); //Set the hourOfDay and userInput to storage while stringifying the value.
+  })
+  
   // TODO: Add code to apply the past, present, or future class to each time
   // block by comparing the id to the current hour. HINTS: How can the id
   // attribute of each time-block be used to conditionally add or remove the
