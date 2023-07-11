@@ -7,6 +7,8 @@ var timeDisplayEl = $('#time-display');
 
 $(document).ready(function() {
 
+  //We'll keep the dayjs time things here instead of another function so that it is easier to use the variables that we need.
+
   var rightNow = dayjs().format('MMM DD, YYYY [at] hh:mm:ss a');
   var currentHour = dayjs().format("HH");
   var saveButton = $(".saveBtn");
@@ -39,10 +41,28 @@ $(document).ready(function() {
   // past, present, and future classes? How can Day.js be used to get the
   // current hour in 24-hour time?
 
-  //.each(function) helps us not write repetitive code
+  //Calls the class time block because we set a variable for it. The .each(function) helps us not write repetitive code. (Was originally thinking about setting an ID for each time, but this makes the code much shorter and efficient.)
   $(timeBlock).each(function(){ 
 
-    // var hourBlocked = $(this).attr("id")
+    var comparedHour = $(this).attr("id").split("-")[1]; //We go to the ID of this time block class, and we look at the ID (EX: hour-14) and split it, and then take the second value, which in the example would be 14.
+
+    console.log("The current hour that we are looking to block is: " + comparedHour);
+    console.log("This is the current hour: " + currentHour);
+
+    if(comparedHour < currentHour)
+    {
+      $(this).addClass("past"); //Add the past class here in order to make it a gray background color.
+    }
+    else if (comparedHour == currentHour)
+    {
+      $(this).addClass("present"); //Add the present class here in order to make it a red background color.
+    }
+    else if (comparedHour > currentHour)
+    {
+      $(this).addClass("future"); //Add the future class here in order to make it a green background color.
+    }
+
+
 
   })
   //
