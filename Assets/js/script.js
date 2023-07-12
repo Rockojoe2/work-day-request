@@ -27,6 +27,7 @@ $(document).ready(function() {
   //
   $(saveButton).on("click", function(){
     var hourOfDay = $(this).parent().attr("id").split("-")[1]; //Splits the (id of the parent, which this id is (hour-number) and retrieves the number because of the 1)
+    // var storedInformation = JSON.parse(localStorage.getItem(hourOfDay));
 
     // console.log(hourOfDay);
 
@@ -34,17 +35,7 @@ $(document).ready(function() {
 
     localStorage.setItem(hourOfDay,JSON.stringify(userInput)); //Set the hourOfDay and userInput to storage while stringifying the value.
 
-    var storedInformation = JSON.parse(localStorage.getItem(hourOfDay));
-    var textArea = $(this).parent().find("textarea").val();
-
-    console.log("Stored information: " + storedInformation);
-    console.log("Text Area information: " + textArea);
-
-    if(storedInformation !== null){
-
-      // textArea.val = textArea(storedInformation);
-      textArea = storedInformation;
-    }
+  
   })
   
   // TODO: Add code to apply the past, present, or future class to each time
@@ -80,8 +71,21 @@ $(document).ready(function() {
   // TODO: Add code to get any user input that was saved in localStorage and set
   // the values of the corresponding textarea elements. HINT: How can the id
   // attribute of each time-block be used to do this?
+
+  
   //
 // 
+
+  // var hourOfDay = $(this).parent().attr("id").split("-")[1]; //Splits the (id of the parent, which this id is (hour-number) and retrieves the number because of the 1)
+  // var storedInformation = JSON.parse(localStorage.getItem(hourOfDay));
+
+  // // textArea.val = textArea(storedInformation);
+  // // console.log("Stored information: " + storedInformation);
+  // // console.log("Text Area information: " + user);
+  // $(this).innerHTML = storedInformation;
+  // // textArea = storedInformation;
+
+
 
   // TODO: Add code to display the current date in the header of the page.
  
